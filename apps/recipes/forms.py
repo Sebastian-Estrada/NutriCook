@@ -1,7 +1,10 @@
 from django import forms
 from django_select2.forms import ModelSelect2MultipleWidget, ModelSelect2Widget
+
+from apps.cuisine_types.models import CuisineType
+
 from .models import Recipe, RecipeIngredient
-from cuisine_types.models import CuisineType
+
 
 class RecipeForm(forms.ModelForm):
     cuisine_type = forms.ModelChoiceField(

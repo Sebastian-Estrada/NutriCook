@@ -72,13 +72,20 @@ THIRD_PARTY_APPS = [
 ]
 
 PUBLIC_APPS = [
+    'apps.core',
+    'apps.cuisine_types',
+    'apps.dashboards',
+    'apps.ingredients',
+    'apps.meal_types',
+    'apps.meals',
+    'apps.recipes',
+    'apps.users',
 ]
 
 
 SHARED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PUBLIC_APPS
-TENANT_APPS = DJANGO_APPS + THIRD_PARTY_APPS
-INSTALLED_APPS = list(SHARED_APPS) + \
-    [app for app in TENANT_APPS if app not in SHARED_APPS]
+
+INSTALLED_APPS = SHARED_APPS
 
 AUTH_USER_MODEL = "users.User"
 
@@ -155,7 +162,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-INITIAL_USUER = json.loads(os.getenv('INITIAL_USUER'))
+INITIAL_USER = json.loads(os.getenv('INITIAL_USER'))
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

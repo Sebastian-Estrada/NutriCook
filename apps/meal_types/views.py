@@ -1,5 +1,8 @@
 from django.views.generic import ListView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+from apps.core.mixins import MessageMixin
+
 from .models import MealType
 from .forms import MealTypeForm
 

@@ -3,8 +3,8 @@ from django_select2.forms import ModelSelect2Widget
 
 from .models import Meal
 
-from meal_types.models import MealType
-from recipes.models import Recipe
+from apps.meal_types.models import MealType
+from apps.recipes.models import Recipe
 
 class MealForm(forms.ModelForm):
     meal_type = forms.ModelChoiceField(

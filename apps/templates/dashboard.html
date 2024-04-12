@@ -1,0 +1,71 @@
+<!-- dashboard.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Dashboard Section -->
+<section class="dashboard py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Welcome back {{ user }}!</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card bg-info text-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Recipes</h5>
+                        <p class="card-text">You have {{ total_recipes }} recipes available.</p>
+                        <a href="#" class="btn btn-light">View Recipes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-success text-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Ingredients</h5>
+                        <p class="card-text">You have {{ total_ingredients }} ingredients available.</p>
+                        <a href="#" class="btn btn-light">View Ingredients</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-warning text-dark">
+                    <div class="card-body">
+                        <h5 class="card-title">Meals</h5>
+                        <p class="card-text">You have {{ total_meals }} meals available.</p>
+                        <a href="#" class="btn btn-light">View Meals</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="card bg-primary text-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Cuisine Types</h5>
+                        <p class="card-text">You have {{ total_cuisine_types }} cuisine types available.</p>
+                        <a href="#" class="btn btn-light">View Cuisine Types</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-danger text-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Meal Types</h5>
+                        <p class="card-text">You have {{ total_meal_types }} meal types available.</p>
+                        <a href="#" class="btn btn-light">View Meal Types</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-secondary text-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Planner</h5>
+                        <p class="card-text">You have {{ total_planner_items }} planner items available.</p>
+                        <a href="#" class="btn btn-light">View Planner</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- End Dashboard Section -->
+{% endblock %}

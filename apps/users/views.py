@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import FormView, View, ListView, UpdateView, CreateView
+from django.views.generic import FormView, View, ListView, UpdateView, CreateView, TemplateView
 
 from .models import (
     User
@@ -19,7 +19,7 @@ from .forms import (
 class Login(FormView):
     form_class = LoginForm
     template_name = 'login.html'
-    success_url = reverse_lazy('init')
+    success_url = reverse_lazy('dashboard:dashboard')
 
     def form_valid(self, form):
         message = ""
@@ -49,7 +49,7 @@ class Logout(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
         messages.success(request, "Session closed successfully")
-        return redirect('init')
+        return redirect('login')
 
 
 class UsersList(LoginRequiredMixin, ListView):

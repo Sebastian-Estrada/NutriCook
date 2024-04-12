@@ -7,7 +7,7 @@ from .forms import RecipeForm
 
 class RecipeListView(LoginRequiredMixin, ListView):
     model = Recipe
-    template_name = 'recipe_list.html'
+    template_name = 'recipes/recipe_list.html'
     context_object_name = 'recipes'
 
     def get_queryset(self):
@@ -16,7 +16,7 @@ class RecipeListView(LoginRequiredMixin, ListView):
 class RecipeCreateView(LoginRequiredMixin, CreateView):
     model = Recipe
     form_class = RecipeForm
-    template_name = 'recipe_create.html'
+    template_name = 'recipes/recipe_create.html'
     success_url = reverse_lazy('recipe_list')
 
     def form_valid(self, form):
@@ -26,7 +26,7 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
 class RecipeUpdateView(LoginRequiredMixin, UpdateView):
     model = Recipe
     form_class = RecipeForm
-    template_name = 'recipe_update.html'
+    template_name = 'recipes/recipe_update.html'
     success_url = reverse_lazy('recipe_list')
 
     def form_valid(self, form):
