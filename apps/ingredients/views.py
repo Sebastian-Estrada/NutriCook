@@ -10,7 +10,7 @@ from .forms import (
     CategoryForm, CategoryUpdateForm
 )
 
-class IngredientListView(LoginRequiredMixin, ListView):
+class IngredientListView(ListView):
     model = Ingredient
     template_name = 'ingredients/ingredient_list.html'
     context_object_name = 'ingredients'
@@ -22,19 +22,26 @@ class IngredientListView(LoginRequiredMixin, ListView):
             queryset = queryset.filter(category=category)
         return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        categories = Category.objects.all()
+        context['categories'] = categories
+        selected_category = self.request.GET.get('category', None)
+        context['selected_category'] = int(selected_category) if selected_category else 0
+        return context
 
 class IngredientCreateView(LoginRequiredMixin, MessageMixin, CreateView):
     model = Ingredient
     form_class = IngredientForm
     template_name = 'ingredients/ingredient_create.html'
-    success_url = reverse_lazy('ingredient_list')
+    success_url = reverse_lazy('ingredients:ingredient_list')
 
 
 class IngredientUpdateView(LoginRequiredMixin, MessageMixin, UpdateView):
     model = Ingredient
     form_class = IngredientUpdateForm
     template_name = 'ingredients/ingredient_update.html'
-    success_url = reverse_lazy('ingredient_list')
+    success_url = reverse_lazy('ingredients:ingredient_list')
 
 
 class CategoryListView(LoginRequiredMixin, ListView):
@@ -47,11 +54,11 @@ class CategoryCreateView(LoginRequiredMixin, MessageMixin, CreateView):
     model = Category
     form_class = CategoryForm
     template_name = 'ingredients/category/category_create.html'
-    success_url = reverse_lazy('category_list')
+    success_url = reverse_lazy('ingredients:category_list')
 
 
 class CategoryUpdateView(LoginRequiredMixin, MessageMixin, UpdateView):
     model = Category
     form_class = CategoryUpdateForm
     template_name = 'ingredients/category/category_update.html'
-    success_url = reverse_lazy('category_list')
+    success_url = reverse_lazy('ingredients:category_list')

@@ -22,6 +22,13 @@ class IngredientForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'rows': 4}),
         }
 
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        name_lower = name.lower()
+        if Ingredient.objects.filter(name__iexact=name_lower).exists():
+            self.add_error('name', "An ingredient with this name already exists.")
+        return name
+
 
 class IngredientUpdateForm(IngredientForm):
     class Meta(IngredientForm.Meta):

@@ -1,5 +1,6 @@
 from django.views.generic import ListView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 from apps.core.mixins import MessageMixin
 
@@ -15,10 +16,10 @@ class CuisineTypeCreateView(LoginRequiredMixin, MessageMixin, CreateView):
     model = CuisineType
     form_class = CuisineTypeForm
     template_name = 'cuisine_types/cuisine_type_form.html'
-    success_url = '/cuisine-types/'
+    success_url = reverse_lazy('cuisine_types:cuisine_type_list')
 
 class CuisineTypeUpdateView(LoginRequiredMixin, MessageMixin, UpdateView):
     model = CuisineType
     form_class = CuisineTypeForm
     template_name = 'cuisine_types/cuisine_type_form.html'
-    success_url = '/cuisine-types/'
+    success_url = reverse_lazy('cuisine_types:cuisine_type_list')

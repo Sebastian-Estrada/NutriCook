@@ -8,9 +8,9 @@ app_name = 'ingredients'
 
 urlpatterns = [
     # Ingredient URLs
-    path('ingredient/list/', IngredientListView.as_view(), name='ingredient_list'),
-    path('ingredient/create/', IngredientCreateView.as_view(), name='ingredient_create'),
-    path('ingredient/update/<int:pk>/', IngredientUpdateView.as_view(), name='ingredient_update'),
+    path('list/', IngredientListView.as_view(), name='ingredient_list'),
+    path('create/', IngredientCreateView.as_view(), name='ingredient_create'),
+    path('update/<int:pk>/', IngredientUpdateView.as_view(), name='ingredient_update'),
 
     # Category URLs
     path('category/list/', CategoryListView.as_view(), name='category_list'),

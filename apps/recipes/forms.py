@@ -2,6 +2,7 @@ from django import forms
 from django_select2.forms import ModelSelect2MultipleWidget, ModelSelect2Widget
 
 from apps.cuisine_types.models import CuisineType
+from apps.ingredients.models import Ingredient
 
 from .models import Recipe, RecipeIngredient
 
@@ -12,7 +13,8 @@ class RecipeForm(forms.ModelForm):
         empty_label='Select cuisine type',
         widget=ModelSelect2Widget(
             model=CuisineType,
-            search_fields=['name__icontains']
+            search_fields=['name__icontains'],
+            attrs={'data-minimum-input-length': ''}
         )
     )
 
@@ -29,7 +31,7 @@ class RecipeForm(forms.ModelForm):
         }
         widgets = {
             'description': forms.Textarea(attrs={'rows': 4}),
-            'ingredients': ModelSelect2MultipleWidget(model=RecipeIngredient, queryset=RecipeIngredient.objects.all(), search_fields=['ingredient__name__icontains']),
+            'ingredients': ModelSelect2MultipleWidget(model=Ingredient, queryset=Ingredient.objects.all(), search_fields=['name__icontains'],attrs={'data-minimum-input-length': ''}),
         }
 
 

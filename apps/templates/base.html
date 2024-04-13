@@ -2,6 +2,7 @@
 <html lang="en">
 
 {% load static %}
+{% load bootstrap4 %}
 
 <head>
     <meta charset="UTF-8">
@@ -38,6 +39,8 @@
             flex-shrink: 0;
         }
     </style>
+    {{ form.media.css }}
+
 </head>
 
 <body>
@@ -61,8 +64,8 @@
                             Cuisine Types
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="ingredientsDropdown">
-                            <li><a class="dropdown-item" href="#">Add Type</a></li>
-                            <li><a class="dropdown-item" href="#">View Types</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cuisine_types:cuisine_type_create'%}">Add Type</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cuisine_types:cuisine_type_list'%}">View Types</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -71,8 +74,10 @@
                             Ingredients
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="ingredientsDropdown">
-                            <li><a class="dropdown-item" href="#">Add Ingredient</a></li>
-                            <li><a class="dropdown-item" href="#">View Ingredients</a></li>
+                            <li><a class="dropdown-item" href="{% url 'ingredients:ingredient_create' %}">Add Ingredient</a></li>
+                            <li><a class="dropdown-item" href="{% url 'ingredients:ingredient_list' %}">View Ingredients</a></li>
+                            <li><a class="dropdown-item" href="{% url 'ingredients:category_create' %}">Add Ingredient Type</a></li>
+                            <li><a class="dropdown-item" href="{% url 'ingredients:category_list' %}">View Ingredient Types</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -81,8 +86,8 @@
                             Recipes
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="recipesDropdown">
-                            <li><a class="dropdown-item" href="#">Add Recipe</a></li>
-                            <li><a class="dropdown-item" href="#">View Recipes</a></li>
+                            <li><a class="dropdown-item" href="{% url 'recipes:recipe_create' %}">Add Recipe</a></li>
+                            <li><a class="dropdown-item" href="{% url 'recipes:recipe_list' %}">View Recipes</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -93,8 +98,8 @@
                         <ul class="dropdown-menu" aria-labelledby="mealsDropdown">
                             <li><a class="dropdown-item" href="#">Add Meal</a></li>
                             <li><a class="dropdown-item" href="#">View Meals</a></li>
-                            <li><a class="dropdown-item" href="#">Add Meal Type</a></li>
-                            <li><a class="dropdown-item" href="#">View Meals Types</a></li>
+                            <li><a class="dropdown-item" href="{% url 'meal_types:meal_type_create' %}">Add Meal Type</a></li>
+                            <li><a class="dropdown-item" href="{% url 'meal_types:meal_type_list' %}">View Meals Types</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -123,6 +128,7 @@
         <!-- End Footer -->
     </div>
     <!-- End Content -->
+    {{ form.media.js }}
 
 </body>
 

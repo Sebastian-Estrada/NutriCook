@@ -1,9 +1,12 @@
+import random
+
 from django.utils import timezone
 
 from apps.users.models import User
 from apps.cuisine_types.models import CuisineType
 from apps.ingredients.models import Ingredient, Category
 from apps.meal_types.models import MealType
+from apps.recipes.models import Recipe, RecipeIngredient
 
 def create_initial_users(users):
     for user_data in users:
@@ -268,3 +271,50 @@ def populate_ingredients():
 populate_cuisine_types()
 populate_meal_types()
 populate_ingredients()
+
+
+cuisine_types = ['Italian', 'Mexican', 'Chinese', 'Indian', 'Japanese', 'French', 'Mediterranean', 'Thai', 'Greek', 'American']
+for cuisine_type in cuisine_types:
+    CuisineType.objects.get_or_create(name=cuisine_type)
+
+ingredients = Ingredient.objects.all()
+
+cuisine_types = CuisineType.objects.all()
+
+users = User.objects.all()
+
+recipe_titles = [
+    "Spicy Chicken Tacos",
+    "Creamy Mushroom Risotto",
+    "Tangy Lemon Herb Salmon",
+    "Garlic Butter Shrimp Pasta",
+    "Mediterranean Quinoa Salad",
+    "Thai Red Curry Chicken",
+    "Caprese Stuffed Portobello Mushrooms",
+    "BBQ Pulled Pork Sandwiches",
+    "Veggie-packed Chicken Stir-fry",
+    "Sweet and Sour Pineapple Chicken",
+    "Greek-style Grilled Lamb Chops",
+    "Creamy Pesto Chicken Pasta",
+    "Teriyaki Glazed Salmon",
+    "Cajun Shrimp and Sausage Skillet",
+    "Mushroom and Spinach Stuffed Chicken Breast",
+    "Italian Sausage and Peppers Pasta",
+    "Honey Mustard Glazed Pork Tenderloin",
+    "Vegetable Tikka Masala",
+    "Lemon Garlic Butter Scallops",
+    "Mexican Street Corn Salad"
+]
+
+for i in range(30):
+    user = random.choice(users)
+    cuisine_type = random.choice(cuisine_types)
+    recipe_title = random.choice(recipe_titles)
+    recipe_description = f"Description for {recipe_title}"
+    recipe = Recipe.objects.create(title=recipe_title, description=recipe_description, author=user, cuisine_type=cuisine_type)
+    num_ingredients = random.randint(3, 5)
+    selected_ingredients = random.sample(list(ingredients), num_ingredients)
+    for ingredient in selected_ingredients:
+        quantity = round(random.uniform(0.1, 2.0), 2)
+        unit = random.choice(['g', 'kg', 'ml', 'L', 'tsp', 'tbsp'])
+        RecipeIngredient.objects.create(recipe=recipe, ingredient=ingredient, quantity=quantity, unit=unit)
