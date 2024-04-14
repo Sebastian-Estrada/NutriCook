@@ -56,7 +56,17 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'dashboard:dashboard'%}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="ingredientsDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Planner
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="ingredientsDropdown">
+                            <li><a class="dropdown-item" href="{% url 'meal_planner:planner_create'%}">Add Planner</a></li>
+                            <li><a class="dropdown-item" href="{% url 'meal_planner:planner_list'%}">View Planner</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="ingredientsDropdown" role="button"
@@ -96,8 +106,8 @@
                             Meals
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="mealsDropdown">
-                            <li><a class="dropdown-item" href="#">Add Meal</a></li>
-                            <li><a class="dropdown-item" href="#">View Meals</a></li>
+                            <li><a class="dropdown-item" href="{% url 'meals:meal_create'%}">Add Meal</a></li>
+                            <li><a class="dropdown-item" href="{% url 'meals:meal_list'%}">View Meals</a></li>
                             <li><a class="dropdown-item" href="{% url 'meal_types:meal_type_create' %}">Add Meal Type</a></li>
                             <li><a class="dropdown-item" href="{% url 'meal_types:meal_type_list' %}">View Meals Types</a></li>
                         </ul>
@@ -120,7 +130,7 @@
         </div>
 
         <!-- Footer -->
-        <footer class="footer bg-dark text-light py-4">
+        <footer class="footer bg-dark text-light py-4 mt-1">
             <div class="container text-center">
                 <p>&copy; 2024 Nutricook. All rights reserved.</p>
             </div>

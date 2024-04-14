@@ -1,5 +1,5 @@
 from django import forms
-from django_select2.forms import ModelSelect2Widget
+from django_select2.forms import ModelSelect2Widget, ModelSelect2MultipleWidget
 
 from .models import Meal
 
@@ -12,15 +12,18 @@ class MealForm(forms.ModelForm):
         empty_label='Select meal type',
         widget=ModelSelect2Widget(
             model=MealType,
-            search_fields=['name__icontains']
+            search_fields=['name__icontains'],
+            attrs={'data-minimum-input-length': ''}
         )
     )
 
     recipes = forms.ModelMultipleChoiceField(
         queryset=Recipe.objects.all(),
-        widget=ModelSelect2Widget(
+        required=True,
+        widget=ModelSelect2MultipleWidget(
             model=Recipe,
-            search_fields=['title__icontains']
+            search_fields=['name__icontains'],
+            attrs={'data-minimum-input-length': ''}
         )
     )
 

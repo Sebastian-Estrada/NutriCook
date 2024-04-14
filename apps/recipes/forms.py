@@ -20,7 +20,7 @@ class RecipeForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        fields = ['title', 'description', 'ingredients', 'author', 'cuisine_type', 'active']
+        fields = ['title', 'description', 'author', 'cuisine_type', 'active']
         labels = {
             'title': 'Title',
             'description': 'Description',
@@ -31,7 +31,6 @@ class RecipeForm(forms.ModelForm):
         }
         widgets = {
             'description': forms.Textarea(attrs={'rows': 4}),
-            'ingredients': ModelSelect2MultipleWidget(model=Ingredient, queryset=Ingredient.objects.all(), search_fields=['name__icontains'],attrs={'data-minimum-input-length': ''}),
         }
 
 

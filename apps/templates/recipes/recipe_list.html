@@ -17,12 +17,10 @@
                             <li class="list-group-item">{{ recipe_ingredient.ingredient.name }} - {{ recipe_ingredient.quantity }} {{ recipe_ingredient.unit }}</li>
                         {% endfor %}
                     </ul>
-                    {% comment "" %}
                     <div class="mt-auto text-center">
                         <a href="{% url 'recipes:recipe_update' recipe.pk %}" class="btn btn-primary">Edit</a>
+                        <a href="{% url 'recipes:recipe_ingredient_list' recipe.pk %}" class="btn btn-secondary">View Ingredients</a>
                     </div>
-                    {% endcomment %}
-
                 </div>
             </div>
         </div>

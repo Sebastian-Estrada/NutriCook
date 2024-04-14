@@ -13,11 +13,10 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        context['total_recipes'] = Recipe.objects.all().count()
+        user = self.request.user
+        context['total_recipes'] = Recipe.objects.filter(author=user).count()
         context['total_ingredients'] = Ingredient.objects.all().count()
-        context['total_meals'] = Meal.objects.all().count()
-        context['total_meals'] = Meal.objects.all().count()
+        context['total_meals'] = Meal.objects.filter(user=user).count()
         context['total_cuisine_types'] = CuisineType.objects.all().count()
         context['total_meal_types'] = MealType.objects.all().count()
         context['user'] = self.request.user

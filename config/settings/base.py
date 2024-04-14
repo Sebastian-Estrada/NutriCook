@@ -77,6 +77,7 @@ PUBLIC_APPS = [
     'apps.dashboards',
     'apps.ingredients',
     'apps.meal_types',
+    'apps.meal_planner',
     'apps.meals',
     'apps.recipes',
     'apps.users',

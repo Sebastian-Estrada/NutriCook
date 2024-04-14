@@ -31,5 +31,6 @@ urlpatterns = [
     path('ingredients/', include('apps.ingredients.urls', namespace="ingredients")),
     path('cuisine-types/', include('apps.cuisine_types.urls', namespace="cuisine_types")),
     path('dashboards/', include('apps.dashboards.urls', namespace="dashboards")),
+    path('planner/', include('apps.meal_planner.urls', namespace="planner")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
