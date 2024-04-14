@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mb-4 mt-2">Meal Plans</h1>
+        <ul class="list-group">
+            {% for plan in meal_plans %}
+                <li class="list-group-item">
+                    <strong>{{ plan.name }}</strong>
+                    <br>
+                    Date: {{ plan.date }}
+                    <br>
+                    Meals:
+                    <ul>
+                        {% for meal in plan.meals.all %}
+                            <li>{{ meal.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No meal plans found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

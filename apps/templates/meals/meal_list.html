@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mb-4 mt-2">Meals</h1>
+        <ul class="list-group">
+            {% for meal in meals %}
+                <li class="list-group-item">
+                    <h5>{{ meal.name }}</h5>
+                    <p><strong>Meal Type:</strong> {{ meal.meal_type }}</p>
+                    <p><strong>Recipes:</strong></p>
+                    <ul>
+                        {% for recipe in meal.recipes.all %}
+                            <li>
+                                <strong>{{ recipe.title }}</strong>
+                                <ul>
+                                    {% for recipe_ingredient in recipe.recipeingredient_set.all %}
+                                        <li>{{ recipe_ingredient.ingredient.name }} - {{ recipe_ingredient.quantity }} {{ recipe_ingredient.unit }}</li>
+                                    {% empty %}
+                                        <li>No ingredients added to this recipe.</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% empty %}
+                            <li>No recipes added to this meal.</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No meals found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
