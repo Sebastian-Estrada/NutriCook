@@ -7,7 +7,6 @@ app_name = 'dashboard'
 
 urlpatterns = [
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
-
 ]
 
 

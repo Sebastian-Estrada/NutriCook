@@ -10,7 +10,6 @@ from apps.recipes.models import Recipe, RecipeIngredient
 
 def create_initial_users(users):
     for user_data in users:
-        # Create user object
         user = User.objects.create(
             username=user_data['username'],
             first_name=user_data['first_name'],
@@ -21,12 +20,9 @@ def create_initial_users(users):
             is_staff=user_data.get('is_staff', False),
             date_joined=timezone.now() if 'date_joined' not in user_data else user_data['date_joined']
         )
-        # Set password
         user.set_password('nutricook')
-        # Save user
         user.save()
 
-# Sample users data
 users = [
     {
         "username": "user1",
@@ -44,7 +40,6 @@ users = [
     }
 ]
 
-# Create initial users
 create_initial_users(users)
 
 
@@ -53,13 +48,11 @@ def populate_cuisine_types():
     cuisine_types = ['Italian', 'Mexican', 'Chinese', 'Indian', 'Japanese', 'French', 'Mediterranean', 'Thai', 'Greek', 'American']
     for cuisine in cuisine_types:
         CuisineType.objects.get_or_create(name=cuisine)
-    print('Cuisine types populated successfully!')
 
 def populate_meal_types():
     meal_types = ['Breakfast', 'Brunch', 'Lunch', 'Dinner', 'Snack']
     for meal in meal_types:
         MealType.objects.get_or_create(name=meal)
-    print('Meal types populated successfully!')
 
 def populate_ingredients():
     ingredients = [
@@ -265,7 +258,6 @@ def populate_ingredients():
         category_name = ingredient.pop('category')
         category, _ = Category.objects.get_or_create(name=category_name)
         Ingredient.objects.get_or_create(category=category, **ingredient)
-    print('Ingredients and categories populated successfully!')
 
 
 populate_cuisine_types()
