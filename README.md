@@ -2,7 +2,7 @@
 A digital recipe cookbook focused on promoting healthy eating habits Users can search for recipes based on ingredients, meal types. It will take ingredients as input and output recipes based on the input ingredients.
 
 # Clone Repository:
-- git clone <repository_url>
+- git clone (https://github.com/Sebastian-Estrada/NutriCook.git)
 
 # Navigate to Project Directory:
 - cd NutriCook
@@ -22,6 +22,16 @@ A digital recipe cookbook focused on promoting healthy eating habits Users can s
 # Configure Settings:
 - Update DATABASES configuration in base.py with your database details
 - Configure other settings as required
+
+# Settings example and environment variables:
+- SECRET_KEY="the_secret_key"
+- DEBUG=True
+- OWN_DOMAINS=localhost
+- DATABASE_DEFAULT='{"ENGINE": "django.db.backends.postgresql", "NAME": "nutricook", "USER": "your_db_user", "PASSWORD": "password", "HOST": "localhost", "PORT": "5432", "ATOMIC_REQUESTS": true}'
+- REDIS_HOST=localhost
+- REDIS_PORT=6379
+- REDIS_PASSWORD=
+- INITIAL_USER=''
 
 # Perform Database Migrations:
 - python manage.py makemigrations

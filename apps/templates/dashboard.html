@@ -5,7 +5,7 @@
 
 <style>
     #calendar {
-        width: 75%; /* Adjust the width as needed */
+        width: 50%; /* Adjust the width as needed */
         margin: 0 auto; /* Center the calendar horizontally */
     }
 </style>
@@ -14,6 +14,17 @@
 <section class="dashboard py-5">
     <div class="container">
         <h2 class="text-center mb-4">Welcome back {{ user }}!</h2>
+        <div class="row mt-3 text-center">
+            <div class="col-md-4 offset-md-4 mt-1">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Recipe Recommendation</h5>
+                        <p class="card-text">Based on the time of day, we recommend the following meal:</p>
+                        <p class="card-text">{{ recommended_meal }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-4 mt-1">
                 <div class="card bg-info text-light">

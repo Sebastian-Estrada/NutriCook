@@ -19,15 +19,20 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         user = self.request.user
 
         meal_plans = MealPlan.objects.filter(user=user)
-        data = [{'title': event.name, 'start': str(event.date.isoformat())} for event in meal_plans]
+        data = MealPlan.iso_format_date(meal_plans)
 
+        recommended_meal = Meal.get_recommended_meal(user)
+        print(type(recommended_meal), recommended_meal)
         context['total_recipes'] = Recipe.objects.filter(author=user).count()
         context['total_ingredients'] = Ingredient.objects.all().count()
         context['total_meals'] = Meal.objects.filter(user=user).count()
         context['total_cuisine_types'] = CuisineType.objects.all().count()
         context['total_meal_types'] = MealType.objects.all().count()
         context['total_meal_plans'] = meal_plans.count()
+
+        context['recommended_meal'] = recommended_meal
         context['meal_plans'] = data
+
         context['user'] = self.request.user
 
         return context
